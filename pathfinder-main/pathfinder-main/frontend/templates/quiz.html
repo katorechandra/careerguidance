@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PathFinder — Career Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+  <!-- Background Decoration -->
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="logo" href="/">PathFinder</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="{{ url_for('login') }}">Quiz</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="quiz-container glass-panel">
+
+    <div class="category-select-wrapper">
+      <div class="category-btn-group">
+        <button type="button" class="category-btn active" data-value="after10">After Class 10th</button>
+        <button type="button" class="category-btn" data-value="after12">After Class 12th</button>
+      </div>
+      <input type="hidden" id="categoryInput" value="after10">
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-track">
+        <div class="progress-fill" id="progress"></div>
+      </div>
+      <div class="progress-text">Question <span id="current-question">1</span> of <span id="total-questions">5</span>
+      </div>
+    </div>
+
+    <form id="quizForm">
+      <!-- 
+        AFTER 10TH QUESTIONS (q1..q5)
+      -->
+      <div class="question-block active" id="q1">
+        <h2 class="question-text">1. Which subject do you like the most?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q1" value="Mathematics">
+            <span>Mathematics</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q1" value="Science">
+            <span>Science</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q1" value="Languages">
+            <span>Languages</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q1" value="Social Studies">
+            <span>Social Studies</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q2">
+        <h2 class="question-text">2. What type of study do you prefer?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q2" value="Practical">
+            <span>Practical / Experiments</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q2" value="Theory">
+            <span>Theory / Reading</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q2" value="Both">
+            <span>Both</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q2" value="Not sure">
+            <span>Not sure</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q3">
+        <h2 class="question-text">3. What do you plan to do after 10th?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q3" value="Science">
+            <span>Science (11–12)</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q3" value="Commerce">
+            <span>Commerce (11–12)</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q3" value="Arts">
+            <span>Arts (11–12)</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q3" value="Diploma">
+            <span>Diploma / ITI</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q4">
+        <h2 class="question-text">4. What is your main goal right now?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q4" value="Higher education">
+            <span>Higher education</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q4" value="Skill-based learning">
+            <span>Skill-based learning</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q4" value="Early job">
+            <span>Early job</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q4" value="Still confused">
+            <span>Still confused</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q5">
+        <h2 class="question-text">5. How confident are you about your career choice?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q5" value="Very confident">
+            <span>Very confident</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q5" value="Somewhat confident">
+            <span>Somewhat confident</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q5" value="Confused">
+            <span>Confused</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q5" value="Need guidance">
+            <span>Need guidance</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 
+        AFTER 12TH QUESTIONS (q1_12 .. q6_12) 
+        Note: The original code skipped q2_12. I will follow the same ID logic for compatibility with backend.
+      -->
+
+      <div class="question-block" id="q1_12">
+        <h2 class="question-text">1. Which stream did you complete in 12th?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q1_12" value="Science">
+            <span>Science</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q1_12" value="Commerce">
+            <span>Commerce</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q1_12" value="Arts">
+            <span>Arts</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q1_12" value="Vocational">
+            <span>Vocational</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q3_12">
+        <h2 class="question-text">2. What do you want to pursue next?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q3_12" value="Engineering/Medical">
+            <span>Engineering / Medical</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q3_12" value="Degree">
+            <span>Degree (BSc / BCom / BA)</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q3_12" value="Professional">
+            <span>Professional course (CA / CS)</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q3_12" value="Skill-based">
+            <span>Skill-based course</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q4_12">
+        <h2 class="question-text">3. What type of work interests you?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q4_12" value="Technical">
+            <span>Technical</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q4_12" value="Management">
+            <span>Management</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q4_12" value="Creative">
+            <span>Creative</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q4_12" value="Social service">
+            <span>Social service</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q5_12">
+        <h2 class="question-text">4. How comfortable are you with competitive exams?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q5_12" value="Very comfortable">
+            <span>Very comfortable</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q5_12" value="Average">
+            <span>Average</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q5_12" value="Difficult">
+            <span>Difficult</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q5_12" value="Not interested">
+            <span>Not interested</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="question-block" id="q6_12">
+        <h2 class="question-text">5. What is your long-term plan?</h2>
+        <div class="options-grid">
+          <label class="option-card">
+            <input type="radio" name="q6_12" value="High-paying job">
+            <span>High-paying job</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q6_12" value="Government job">
+            <span>Government job</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q6_12" value="Higher studies">
+            <span>Higher studies</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="q6_12" value="Entrepreneurship">
+            <span>Entrepreneurship</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="prevBtn" class="btn btn-outline" disabled>Previous</button>
+        <button type="button" id="nextBtn" class="btn btn-primary">Next</button>
+        <button type="submit" id="submitBtn" class="btn btn-primary" style="display: none;">Submit</button>
+      </div>
+
+    </form>
+
+    <div class="loading-overlay" id="loading">
+      <div class="spinner"></div>
+      <p>Analyzing your answers...</p>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 PathFinder</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      let currentQuestion = 1;
+      const progressFill = document.getElementById('progress');
+      const currentQuestionSpan = document.getElementById('current-question');
+      const totalQuestionsSpan = document.getElementById('total-questions');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const submitBtn = document.getElementById('submitBtn');
+      const loadingDiv = document.getElementById('loading');
+      const quizForm = document.getElementById('quizForm');
+      const formActions = document.querySelector('.form-actions');
+      const defaultCategory = 'after10';
+
+      function getSelectedCategory() {
+        return document.getElementById('categoryInput').value || defaultCategory;
+      }
+
+      function getTotalQuestions() {
+        // Both categories essentially have 5 questions
+        return 5;
+      }
+
+      // Map logic question index (1..5) to DOM ID based on category
+      function getQuestionId(num) {
+        const cat = getSelectedCategory();
+        if (cat === 'after10') {
+          return `q${num}`;
+        } else {
+          // Mapping for after12:
+          // 1 -> q1_12
+          // 2 -> q3_12
+          // 3 -> q4_12
+          // 4 -> q5_12
+          // 5 -> q6_12
+          if (num === 1) return 'q1_12';
+          if (num === 2) return 'q3_12';
+          if (num === 3) return 'q4_12';
+          if (num === 4) return 'q5_12';
+          if (num === 5) return 'q6_12';
+        }
+        return 'q1';
+      }
+
+      function updateProgress() {
+        const total = getTotalQuestions();
+        const progress = (currentQuestion / total) * 100;
+        progressFill.style.width = `${progress}%`;
+        currentQuestionSpan.textContent = currentQuestion;
+        totalQuestionsSpan.textContent = total;
+      }
+
+      function showQuestion(num) {
+        // Hide all questions
+        document.querySelectorAll('.question-block').forEach(el => el.classList.remove('active'));
+
+        // Show target
+        const qid = getQuestionId(num);
+        const el = document.getElementById(qid);
+        if (el) el.classList.add('active');
+
+        // Update buttons
+        prevBtn.disabled = (num === 1);
+
+        if (num === getTotalQuestions()) {
+          nextBtn.style.display = 'none';
+          submitBtn.style.display = 'inline-flex';
+        } else {
+          nextBtn.style.display = 'inline-flex';
+          submitBtn.style.display = 'none';
+        }
+      }
+
+      // Initial Setup
+      updateProgress();
+      showQuestion(1);
+
+      // Category Switching
+      document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.addEventListener('click', function () {
+          if (this.classList.contains('active')) return;
+
+          // Switch active class
+          document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+
+          // Update Input
+          document.getElementById('categoryInput').value = this.dataset.value;
+
+          // Reset
+          currentQuestion = 1;
+
+          // Clear selections
+          document.querySelectorAll('.option-card.selected').forEach(c => c.classList.remove('selected'));
+          document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+
+          updateProgress();
+          showQuestion(1);
+        });
+      });
+
+      // Navigation
+      nextBtn.addEventListener('click', () => {
+        // Validation could go here
+        const qid = getQuestionId(currentQuestion);
+        const checked = document.querySelector(`#${qid} input:checked`);
+        if (!checked) {
+          alert('Please select an option.');
+          return;
+        }
+        if (currentQuestion < getTotalQuestions()) {
+          currentQuestion++;
+          updateProgress();
+          showQuestion(currentQuestion);
+        }
+      });
+
+      prevBtn.addEventListener('click', () => {
+        if (currentQuestion > 1) {
+          currentQuestion--;
+          updateProgress();
+          showQuestion(currentQuestion);
+        }
+      });
+
+      // Selection Visuals
+      document.querySelectorAll('.option-card').forEach(card => {
+        card.addEventListener('click', function (e) {
+          // Remove selected from siblings in same container
+          const container = this.closest('.options-grid');
+          container.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+          this.classList.add('selected');
+
+          // Check radio (handled by label usually, but ensure)
+          const radio = this.querySelector('input');
+          if (radio) radio.checked = true;
+        });
+      });
+
+      // Submission
+      quizForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // Final validation
+        const qid = getQuestionId(currentQuestion);
+        const checked = document.querySelector(`#${qid} input:checked`);
+        if (!checked) {
+          alert('Please select an option.');
+          return;
+        }
+
+        // Show loading
+        quizForm.style.display = 'none';
+        document.querySelector('.progress-container').style.display = 'none';
+        loadingDiv.style.display = 'block';
+
+        const formData = new FormData(quizForm);
+        const answers = {};
+        for (let [k, v] of formData.entries()) {
+          answers[k] = v;
+        }
+
+        const cat = getSelectedCategory();
+
+        try {
+          const res = await fetch('/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              answers: answers,
+              category: cat
+            })
+          });
+
+          const data = await res.json();
+          if (data.error) {
+            alert('Error: ' + data.error);
+            location.reload();
+            return;
+          }
+
+          localStorage.setItem('careerData', JSON.stringify(data));
+          window.location.href = '/result';
+
+        } catch (err) {
+          console.error(err);
+          alert('Something went wrong. Please try again.');
+          location.reload();
+        }
+      });
+
+    });
+  </script>
+</body>
+
+</html>

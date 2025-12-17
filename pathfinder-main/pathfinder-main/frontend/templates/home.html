@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PathFinder — Find Your Ideal Career Path</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css">
+
+
+</head>
+
+<body>
+
+  <div class="bg-decor" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="logo" href="/">PathFinder</a>
+
+      <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false" aria-label="Toggle menu">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+
+      <ul id="nav-menu" class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="{{ url_for('login') }}">Quiz</a></li>
+        <li><a href="{{ url_for('login') }}">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container">
+      <div class="hero-content">
+        <h1 class="hero-title text-balance">
+          Find Your Ideal Career Path
+        </h1>
+        <p class="hero-subtitle text-pretty">
+          Take our AI-powered quiz and discover the best career options for you.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="{{ url_for('login') }}">Start Quiz</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="features container" aria-label="Key Features">
+      <div class="section-head">
+        <h2 class="section-title">Why PathFinder?</h2>
+        <p class="section-subtitle">
+          Modern guidance designed for students exploring their next step.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="card feature-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2l2.1 6.4L21 9l-5 3.9L17.2 20 12 16.8 6.8 20 8 12.9 3 9l6.9-.6L12 2z" fill="currentColor" />
+            </svg>
+          </div>
+          <h3 class="card-title">AI-Powered Career Suggestions</h3>
+          <p class="card-text">
+            Our intelligent engine analyzes your interests and strengths to recommend personalized career paths.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M4 4h16v12H4z" stroke="currentColor" stroke-width="2" />
+              <path d="M7 8h10M7 12h6" stroke="currentColor" stroke-width="2" />
+              <circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+          <h3 class="card-title">Interactive Quiz</h3>
+          <p class="card-text">
+            A friendly, adaptive questionnaire helps you discover roles that truly fit your personality.
+          </p>
+        </article>
+
+        <article class="card feature-card">
+          <div class="icon-wrap" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+              <path d="M3 13l4-4 4 4 7-7 3 3" stroke="currentColor" stroke-width="2" fill="none" />
+              <path d="M3 20h18" stroke="currentColor" stroke-width="2" />
+            </svg>
+          </div>
+          <h3 class="card-title">Personalized Insights</h3>
+          <p class="card-text">
+            Get actionable insights and resources to plan coursework, internships, and your next steps.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <p class="copyright">
+        © 2025 PathFinder
+      </p>
+      <ul class="socials" aria-label="Social links">
+        <li>
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 8.98h4v12.02H3zM14.5 9c-2.18 0-3.48 1.19-4.06 2.23h-.06V9H6.5v12h4v-6.7c0-1.77.34-3.49 2.53-3.49 2.16 0 2.19 2.02 2.19 3.6V21h4v-6.88C19.22 10.97 17.18 9 14.5 9z"
+                fill="currentColor" />
+            </svg>
+            <span class="sr-only">LinkedIn</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2" />
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" />
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" />
+            </svg>
+            <span class="sr-only">Instagram</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 2C6.48 2 2 6.58 2 12.26c0 4.51 2.87 8.33 6.84 9.68.5.09.68-.22.68-.49 0-.24-.01-.88-.01-1.72-2.78.62-3.37-1.2-3.37-1.2-.45-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.52 1.05 1.52 1.05.89 1.56 2.34 1.11 2.9.85.09-.67.35-1.11.63-1.36-2.22-.26-4.55-1.14-4.55-5.08 0-1.12.39-2.04 1.03-2.76-.1-.26-.45-1.31.1-2.73 0 0 .84-.27 2.75 1.05A9.31 9.31 0 0 1 12 7.5c.86 0 1.73.12 2.54.36 1.91-1.32 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.72 1.03 1.64 1.03 2.76 0 3.95-2.34 4.82-4.56 5.08.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.8 0 .27.18.59.69.49A10.03 10.03 0 0 0 22 12.26C22 6.58 17.52 2 12 2z"
+                fill="currentColor" />
+            </svg>
+            <span class="sr-only">GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile nav toggle for accessibility and responsiveness
+    const navToggle = document.querySelector(".nav-toggle")
+    const navMenu = document.getElementById("nav-menu")
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener("click", () => {
+        const isOpen = navMenu.classList.toggle("open")
+        navToggle.setAttribute("aria-expanded", String(isOpen))
+      })
+    }
+
+    // Smooth scroll for in-page links (e.g., About)
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        const target = document.querySelector(link.getAttribute("href"))
+        if (target) {
+          e.preventDefault()
+          target.scrollIntoView({ behavior: "smooth", block: "start" })
+          // Close mobile menu after navigating
+          if (navMenu.classList.contains("open")) {
+            navMenu.classList.remove("open")
+            navToggle.setAttribute("aria-expanded", "false")
+          }
+        }
+      })
+    })
+
+  </script>
+</body>
+
+</html>

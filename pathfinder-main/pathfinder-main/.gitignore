@@ -1,0 +1,34 @@
+# Environment variables
+.env
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE settings
+.vscode/
+.idea/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Unit test / coverage reports
+.coverage
+htmlcov/
+coverage.xml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
